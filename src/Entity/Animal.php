@@ -1,6 +1,5 @@
 <?php
 namespace App\Entity;
-
 abstract class Animal {
     // Le constructeur
     public function  __construct(protected string $name, protected int $age){

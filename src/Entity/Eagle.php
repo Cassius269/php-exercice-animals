@@ -1,8 +1,11 @@
 <?php
 
-use App\Entity\Bird;
+require_once 'Bird.php';
 
-class Eagle extends Bird{
+use App\Entity\Bird;
+use App\Entity\Interface\CanMakeSoundInterface;
+
+class Eagle extends Bird implements CanMakeSoundInterface {
     // Le constructeur
     public function __construct(private float $flightSpeed)
     { 
@@ -27,5 +30,11 @@ class Eagle extends Bird{
     public function move():string
     {
         return 'L\'aigle se déplace';
+    }
+
+    // Utilisation de la méthode makeSound() contractuelle de l'interface CanMaKeSound
+    public function makeSound(): string
+    {
+        return "{$this->name} crie";
     }
 }

@@ -1,8 +1,13 @@
 <?php
 
+require_once 'Bird.php';
+
 use App\Entity\Bird;
+use App\Entity\Interface\CanMakeSoundInterface;
+use App\Entity\Interface\CanSwimInterface;
+
 // Création de la classe Penguin non instanciable, grâce au mot-clé final
-final class Penguin extends Bird{
+final class Penguin extends Bird implements CanMakeSoundInterface, CanSwimInterface{
     // Le constructeur
     public function __construct(private float $swimSpeed)
     {
@@ -22,7 +27,7 @@ final class Penguin extends Bird{
     // La méthode nager
     public function swim():string
     {
-        return $this->name . ' nage';
+        return $this->name . ' peut nage';
     }
 
     
@@ -31,4 +36,10 @@ final class Penguin extends Bird{
     {
         return "{$this->name} se déplace soit par la nage, la marche ou le vol temporaire";
     }
+
+    // Utilisation de la méthode contractuelle makeSound() de l'interface CanMaKeSoundInterface
+    public function makeSound(): string
+    {
+        return "{$this->name} fait un grognement";
+    }    
 }
